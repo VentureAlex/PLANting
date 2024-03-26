@@ -17,10 +17,9 @@ if latitude is not None and longitude is not None:
     if response.status_code == 200:
         # Extract the latitude and longitude from the response JSON
         data = response.json()
-        print("Response JSON:", data)  # Debugging output
         try:
-            latitude = data['properties']['latitude']
-            longitude = data['properties']['longitude']
+            latitude = data['geometry']['coordinates'][1]  # Extract latitude
+            longitude = data['geometry']['coordinates'][0]  # Extract longitude
             print(f"Latitude: {latitude}, Longitude: {longitude}")
         except KeyError as e:
             print("Error accessing latitude/longitude:", e)
